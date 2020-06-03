@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Model.Dbbc>
+
+@{
+    ViewData["Title"] = "CoursesList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Courses List</h1>
+
+<hr />
+@foreach (var item in Model)
+{
+    string[] splited = item.Description.Split(':');
+    string name = splited[0];
+    string description = splited[1];
+
+    <div class="card description-card">
+        <div class="course-beautiful-column"></div>
+        <img alt="LearnImg"
+             src="~/images/Learn.svg"
+             class="description-image" />
+        <div class="description">
+            <h3>@(name)</h3>
+            <span class="pretty-text start-date">
+                <strong>Start date</strong>: @Html.DisplayFor(modelItem => item.StartDate.GetDateTimeFormats()[0])
+            </span>
+            <span class="pretty-text end-date">
+                <strong>End date</strong>: @Html.DisplayFor(modelItem => item.EndDate.GetValueOrDefault().GetDateTimeFormats()[0])
+            </span>
+            <br />
+            <br />
+            <div class="pretty-text number-of-seats">
+                Number of seats: @Html.DisplayFor(modelItem => item.NumberOfSeats)
+            </div>
+            <div class="seats-and-learn-more-div">
+                <span class="pretty-text number-of-used-seats">
+                    Number of used seats: @Html.DisplayFor(modelItem => item.NumberSetsUsed)
+                </span>
+                <span class="learn-more pretty-text">
+                    @Html.ActionLink("Learn more", "Course", "Course", item, new { @class = "href"})
+                </span>
+            </div>
+            <hr />
+            <div class="pretty-text description-text">
+                @description
+            </div>
+        </div>
+    </div>
+    <hr />
+}

@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "DvvsModify";
+}
+
+@model CourseSelect.Models.DvvsModel
+<h2>DvvsModify</h2>
+<form method="post" asp-controller="DBBC" asp-action="AddDbbc" style="max-width: 300px">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label asp-for="TeacherId"></label><br />
+        <select class="form-control" asp-for="TeacherId">
+            @foreach (var item in Model.Teachers)
+            {
+                <option value="@item.Id">@item.Credit</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label asp-for="StartDate"></label><br />
+        <input asp-for="StartDate" class="form-control" />
+        <span asp-validation-for="StartDate"></span>
+    </div>
+    <div>
+        <label asp-for="EndDate"></label><br />
+        <input asp-for="EndDate" class="form-control" />
+        <span asp-validation-for="EndDate"></span>
+    </div>
+    <div>
+        <label asp-for="NumberOfSeats"></label><br />
+        <input asp-for="NumberOfSeats" class="form-control" />
+        <span asp-validation-for="NumberOfSeats"></span>
+    </div>
+    <div>
+        <label asp-for="Description"></label><br />
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description"></span>
+    </div>
+    <br />
+    <div>
+        <input class="btn btn-primary" type="submit" value="Add" />
+    </div>
+</form>
